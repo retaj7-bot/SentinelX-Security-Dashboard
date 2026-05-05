@@ -1,17 +1,17 @@
 threat_type,severity,detail,ip
-BRUTE FORCE,CRITICAL,11 failed logins from 10.0.0.5 (Egypt),10.0.0.5
-BRUTE FORCE,CRITICAL,37 failed logins from 185.23.45.2 (Russia),185.23.45.2
-BRUTE FORCE,CRITICAL,43 failed logins from 194.165.16.11 (Belarus),194.165.16.11
-BRUTE FORCE,CRITICAL,49 failed logins from 198.51.100.5 (Iran),198.51.100.5
-BRUTE FORCE,CRITICAL,27 failed logins from 203.0.113.77 (North Korea),203.0.113.77
-BRUTE FORCE,HIGH,7 failed logins from 45.33.32.156 (USA),45.33.32.156
-BRUTE FORCE,CRITICAL,50 failed logins from 91.108.4.200 (China),91.108.4.200
-GEO ANOMALY,HIGH,37 failed attempts from high-risk country: Russia,185.23.45.2
-GEO ANOMALY,HIGH,43 failed attempts from high-risk country: Belarus,194.165.16.11
-GEO ANOMALY,HIGH,49 failed attempts from high-risk country: Iran,198.51.100.5
-GEO ANOMALY,HIGH,27 failed attempts from high-risk country: North Korea,203.0.113.77
-GEO ANOMALY,HIGH,50 failed attempts from high-risk country: China,91.108.4.200
-OFF-HOURS ACCESS,MEDIUM,162 login attempts outside work hours (7:00–22:00),N/A
+BRUTE FORCE,HIGH,5 failed logins from 10.0.0.5 (Egypt),10.0.0.5
+BRUTE FORCE,CRITICAL,41 failed logins from 185.23.45.2 (Russia),185.23.45.2
+BRUTE FORCE,CRITICAL,61 failed logins from 194.165.16.11 (Belarus),194.165.16.11
+BRUTE FORCE,CRITICAL,51 failed logins from 198.51.100.5 (Iran),198.51.100.5
+BRUTE FORCE,CRITICAL,44 failed logins from 203.0.113.77 (North Korea),203.0.113.77
+BRUTE FORCE,HIGH,5 failed logins from 45.33.32.156 (USA),45.33.32.156
+BRUTE FORCE,CRITICAL,33 failed logins from 91.108.4.200 (China),91.108.4.200
+GEO ANOMALY,HIGH,41 failed attempts from high-risk country: Russia,185.23.45.2
+GEO ANOMALY,HIGH,61 failed attempts from high-risk country: Belarus,194.165.16.11
+GEO ANOMALY,HIGH,51 failed attempts from high-risk country: Iran,198.51.100.5
+GEO ANOMALY,HIGH,44 failed attempts from high-risk country: North Korea,203.0.113.77
+GEO ANOMALY,HIGH,33 failed attempts from high-risk country: China,91.108.4.200
+OFF-HOURS ACCESS,MEDIUM,161 login attempts outside work hours (7:00–22:00),N/A
 CREDENTIAL STUFFING,HIGH,"User ""admin"" accessed from 9 different IPs",N/A
 CREDENTIAL STUFFING,HIGH,"User ""backup_user"" accessed from 9 different IPs",N/A
 CREDENTIAL STUFFING,HIGH,"User ""guest"" accessed from 9 different IPs",N/A
@@ -19,4 +19,4 @@ CREDENTIAL STUFFING,HIGH,"User ""jane.smith"" accessed from 9 different IPs",N/A
 CREDENTIAL STUFFING,HIGH,"User ""john.doe"" accessed from 9 different IPs",N/A
 CREDENTIAL STUFFING,HIGH,"User ""root"" accessed from 9 different IPs",N/A
 CREDENTIAL STUFFING,HIGH,"User ""service_acc"" accessed from 9 different IPs",N/A
-PRIVILEGED ACCOUNT ATTACK,CRITICAL,101 failed attempts on privileged accounts,N/A
+PRIVILEGED ACCOUNT ATTACK,CRITICAL,118 failed attempts on privileged accounts,N/A
