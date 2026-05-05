@@ -1,0 +1,4 @@
+pandas==3.0.2
+faker==40.15.0
+colorama==0.4.6
+numpy==2.4.4
