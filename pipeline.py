@@ -3,7 +3,7 @@ import pandas as pd
 from scripts.generate_logs import generate_logs
 from scripts.preprocess import preprocess_logs
 from scripts.detect_threats import detect
-from scripts.load_database import load_database
+from scripts.store_logs import load_database
 
 def run_pipeline():
     print("\n🔄 Step 1 — Generating logs...")

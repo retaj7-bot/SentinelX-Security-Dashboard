@@ -65,7 +65,7 @@ SentinelX is a cybersecurity data analytics project that:
     │   ├── generate_logs.py
     │   ├── preprocess.py
     │   ├── detect_threats.py
-    │   └── load_database.py
+│   └── store_logs.py
     │
     ├── templates/
     │   └── dashboard.html
