@@ -8,7 +8,11 @@
 ![Status](https://img.shields.io/badge/Status-Active-brightgreen)
 
 ---
+## 📸 Dashboard Preview
 
+![SentinelX Dashboard](images/sentinelx_dashboard.png)
+
+---
 ## 🧠 What is SentinelX?
 
 SentinelX is a cybersecurity data analytics project that:
