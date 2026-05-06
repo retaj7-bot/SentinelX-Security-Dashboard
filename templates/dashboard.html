@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentinelX Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: #08080f; color: #c0c0d0; font-family: 'Segoe UI', sans-serif; }
+
+        /* Header */
+        .header {
+            background: #0a0a12;
+            border-bottom: 1px solid #1a1a2e;
+            padding: 0 24px;
+            height: 56px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-icon {
+            width: 32px; height: 32px;
+            background: #00e5ff22;
+            border: 1px solid #00e5ff66;
+            border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 16px;
+        }
+        .logo-text { font-size: 16px; font-weight: 700; color: #fff; letter-spacing: 2px; }
+        .logo-text span { color: #00e5ff; }
+        .logo-sub { font-size: 9px; color: #3a3a5e; letter-spacing: 3px; font-family: monospace; }
+        .live { display: flex; align-items: center; gap: 6px; }
+        .live-dot {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: #30d158;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+        /* Stats */
+        .stats { display: flex; gap: 12px; padding: 20px 24px; flex-wrap: wrap; }
+        .stat-card {
+            background: #0d0d14;
+            border-radius: 6px;
+            padding: 14px 18px;
+            flex: 1; min-width: 140px;
+            border: 1px solid #1a1a2e;
+        }
+        .stat-label { font-size: 10px; font-family: monospace; color: #5a5a6e; letter-spacing: 2px; margin-bottom: 6px; }
+        .stat-value { font-size: 28px; font-weight: 700; line-height: 1; }
+        .stat-sub { font-size: 10px; color: #5a5a6e; margin-top: 4px; font-family: monospace; }
+
+        /* Charts */
+        .charts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; padding: 0 24px; }
+        .chart-card {
+            background: #0d0d14;
+            border: 1px solid #1a1a2e;
+            border-radius: 6px;
+            padding: 16px;
+        }
+        .chart-title { font-size: 10px; font-family: monospace; color: #5a5a6e; letter-spacing: 2px; margin-bottom: 14px; }
+
+        /* Threats */
+        .threats { padding: 16px 24px; }
+        .threat-card {
+            background: #0d0d14;
+            border: 1px solid #1a1a2e;
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 8px;
+            border-left: 3px solid;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .threat-type { font-family: monospace; font-size: 12px; margin-bottom: 4px; }
+        .threat-detail { font-size: 12px; color: #8888aa; }
+        .severity-badge {
+            font-size: 10px; font-family: monospace;
+            padding: 3px 8px; border-radius: 3px;
+            border: 1px solid;
+        }
+
+        /* Logs table */
+        .logs { padding: 0 24px 24px; }
+        .logs-card { background: #0d0d14; border: 1px solid #1a1a2e; border-radius: 6px; overflow: hidden; }
+        .logs-header {
+            display: grid;
+            grid-template-columns: 160px 90px 120px 130px 110px 110px;
+            gap: 12px; padding: 8px 16px;
+            background: #0a0a12;
+            border-bottom: 1px solid #1a1a2e;
+            font-family: monospace; font-size: 10px; color: #3a3a5e; letter-spacing: 1px;
+        }
+        .log-row {
+            display: grid;
+            grid-template-columns: 160px 90px 120px 130px 110px 110px;
+            gap: 12px; padding: 7px 16px;
+            border-bottom: 1px solid #0f0f1a;
+            font-size: 12px; align-items: center;
+        }
+        .log-row:hover { background: #0d0d18; }
+        .badge {
+            font-size: 10px; font-family: monospace;
+            padding: 2px 7px; border-radius: 3px;
+            border: 1px solid; display: inline-block;
+        }
+        .section-title {
+            font-size: 11px; font-family: monospace;
+            color: #5a5a6e; letter-spacing: 2px;
+            padding: 16px 24px 8px;
+        }
+        .logs-scroll { max-height: 320px; overflow-y: auto; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #0d0d14; }
+        ::-webkit-scrollbar-thumb { background: #1e1e2e; border-radius: 2px; }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="header">
+    <div class="logo">
+        <div class="logo-icon">🛡</div>
+        <div>
+            <div class="logo-text">SENTINEL<span>X</span></div>
+            <div class="logo-sub">SECURITY MONITORING SYSTEM</div>
+        </div>
+    </div>
+    <div class="live">
+        <div class="live-dot"></div>
+        <span style="font-family:monospace;font-size:11px;color:#30d158">LIVE</span>
+        <span style="font-family:monospace;font-size:11px;color:#3a3a5e;margin-left:12px">{{ current_time }}</span>
+    </div>
+</div>
+
+<!-- Stats -->
+<div class="stats">
+    <div class="stat-card" style="border-top: 2px solid #00e5ff;">
+        <div class="stat-label">TOTAL EVENTS</div>
+        <div class="stat-value" style="color:#00e5ff">{{ stats.total }}</div>
+        <div class="stat-sub">last 24 hours</div>
+    </div>
+    <div class="stat-card" style="border-top: 2px solid #ff2d55;">
+        <div class="stat-label">FAILED LOGINS</div>
+        <div class="stat-value" style="color:#ff2d55">{{ stats.failed }}</div>
+        <div class="stat-sub">{{ stats.fail_pct }}% of traffic</div>
+    </div>
+    <div class="stat-card" style="border-top: 2px solid #30d158;">
+        <div class="stat-label">SUCCESSFUL</div>
+        <div class="stat-value" style="color:#30d158">{{ stats.success }}</div>
+        <div class="stat-sub">clean sessions</div>
+    </div>
+    <div class="stat-card" style="border-top: 2px solid #ff6b00;">
+        <div class="stat-label">ACTIVE THREATS</div>
+        <div class="stat-value" style="color:#ff6b00">{{ stats.threats }}</div>
+        <div class="stat-sub">detected by engine</div>
+    </div>
+    <div class="stat-card" style="border-top: 2px solid #ffd60a;">
+        <div class="stat-label">OFF-HOURS EVENTS</div>
+        <div class="stat-value" style="color:#ffd60a">{{ stats.off_hours }}</div>
+        <div class="stat-sub">outside work hours</div>
+    </div>
+</div>
+
+<!-- Charts -->
+<div class="charts">
+    <div class="chart-card">
+        <div class="chart-title">FAILED LOGINS BY HOUR</div>
+        <canvas id="hourChart" height="120"></canvas>
+    </div>
+    <div class="chart-card">
+        <div class="chart-title">TOP OFFENDING IPs</div>
+        <canvas id="ipChart" height="120"></canvas>
+    </div>
+</div>
+
+<!-- Threats -->
+<div class="section-title">DETECTED THREATS</div>
+<div class="threats">
+    {% for threat in threats %}
+    <div class="threat-card" style="border-left-color:
+        {% if threat.severity == 'CRITICAL' %}#ff2d55
+        {% elif threat.severity == 'HIGH' %}#ff6b00
+        {% elif threat.severity == 'MEDIUM' %}#ffd60a
+        {% else %}#30d158{% endif %}">
+        <div>
+            <div class="threat-type" style="color:
+                {% if threat.severity == 'CRITICAL' %}#ff2d55
+                {% elif threat.severity == 'HIGH' %}#ff6b00
+                {% elif threat.severity == 'MEDIUM' %}#ffd60a
+                {% else %}#30d158{% endif %}">
+                {{ threat.threat_type }}
+            </div>
+            <div class="threat-detail">{{ threat.detail }}</div>
+        </div>
+        <div class="severity-badge" style="color:
+            {% if threat.severity == 'CRITICAL' %}#ff2d55
+            {% elif threat.severity == 'HIGH' %}#ff6b00
+            {% elif threat.severity == 'MEDIUM' %}#ffd60a
+            {% else %}#30d158{% endif %};
+            border-color:
+            {% if threat.severity == 'CRITICAL' %}#ff2d5544
+            {% elif threat.severity == 'HIGH' %}#ff6b0044
+            {% elif threat.severity == 'MEDIUM' %}#ffd60a44
+            {% else %}#30d15844{% endif %};
+            background:
+            {% if threat.severity == 'CRITICAL' %}#ff2d5511
+            {% elif threat.severity == 'HIGH' %}#ff6b0011
+            {% elif threat.severity == 'MEDIUM' %}#ffd60a11
+            {% else %}#30d15811{% endif %}">
+            {{ threat.severity }}
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<!-- Logs -->
+<div class="section-title">RECENT LOG ENTRIES</div>
+<div class="logs">
+    <div class="logs-card">
+        <div class="logs-header">
+            <span>TIMESTAMP</span>
+            <span>STATUS</span>
+            <span>USER</span>
+            <span>IP ADDRESS</span>
+            <span>COUNTRY</span>
+            <span>RISK</span>
+        </div>
+        <div class="logs-scroll">
+            {% for log in logs %}
+            <div class="log-row">
+                <span style="font-family:monospace;font-size:11px;color:#5a5a6e">{{ log.timestamp }}</span>
+                <span class="badge" style="
+                    color:{% if log.status == 'SUCCESS' %}#30d158{% else %}#ff2d55{% endif %};
+                    border-color:{% if log.status == 'SUCCESS' %}#30d15840{% else %}#ff2d5540{% endif %};
+                    background:{% if log.status == 'SUCCESS' %}#30d15815{% else %}#ff2d5515{% endif %}">
+                    {{ log.status }}
+                </span>
+                <span style="font-family:monospace;font-size:11px;color:#a0a0c0">{{ log.user }}</span>
+                <span style="font-family:monospace;font-size:11px;color:#6a6a8e">{{ log.ip }}</span>
+                <span style="font-size:12px">{{ log.flag }} {{ log.country }}</span>
+                <span class="badge" style="
+                    color:{% if log.safe %}#30d158{% else %}#ff2d55{% endif %};
+                    border-color:{% if log.safe %}#30d15840{% else %}#ff2d5540{% endif %};
+                    background:{% if log.safe %}#30d15815{% else %}#ff2d5515{% endif %}">
+                    {% if log.safe %}SAFE{% else %}SUSPICIOUS{% endif %}
+                </span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<script>
+    // Hour chart
+    const hourData = {{ hour_data | tojson }};
+    new Chart(document.getElementById('hourChart'), {
+        type: 'bar',
+        data: {
+            labels: hourData.map(d => d.hour + ':00'),
+            datasets: [{
+                data: hourData.map(d => d.count),
+                backgroundColor: '#ff2d5588',
+                borderColor: '#ff2d55',
+                borderWidth: 1,
+                borderRadius: 3,
+            }]
+        },
+        options: {
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { ticks: { color: '#5a5a6e', font: { family: 'monospace', size: 10 } }, grid: { color: '#1a1a2e' } },
+                y: { ticks: { color: '#5a5a6e', font: { family: 'monospace', size: 10 } }, grid: { color: '#1a1a2e' } }
+            }
+        }
+    });
+
+    // IP chart
+    const ipData = {{ ip_data | tojson }};
+    new Chart(document.getElementById('ipChart'), {
+        type: 'bar',
+        data: {
+            labels: ipData.map(d => d.ip),
+            datasets: [{
+                data: ipData.map(d => d.count),
+                backgroundColor: '#ff6b0088',
+                borderColor: '#ff6b00',
+                borderWidth: 1,
+                borderRadius: 3,
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            plugins: { legend: { display: false } },
+            scales: {
+                x: { ticks: { color: '#5a5a6e', font: { family: 'monospace', size: 10 } }, grid: { color: '#1a1a2e' } },
+                y: { ticks: { color: '#5a5a6e', font: { family: 'monospace', size: 10 } }, grid: { color: '#1a1a2e' } }
+            }
+        }
+    });
+</script>
+</body>
+</html>
