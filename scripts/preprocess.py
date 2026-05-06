@@ -6,9 +6,8 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from scripts.config import RAW_LOGS_PATH, PROCESSED_LOGS_PATH, WORK_HOURS_START, WORK_HOURS_END
 
-def preprocess():
-    print("[*] Loading raw logs...")
-    df = pd.read_csv(RAW_LOGS_PATH)
+def preprocess_logs(df):
+    print("[*] Preprocessing logs...")
 
     # Convert timestamp to datetime
     df["timestamp"] = pd.to_datetime(df["timestamp"])
@@ -31,7 +30,7 @@ def preprocess():
     df = df.merge(fail_counts, on="ip", how="left")
     df["failed_attempts"] = df["failed_attempts"].fillna(0).astype(int)
 
-    # Count how many unique IPs each user logged in from
+    # Count unique IPs per user
     ip_per_user = (
         df.groupby("user")["ip"]
         .nunique()
@@ -44,13 +43,5 @@ def preprocess():
     df.to_csv(PROCESSED_LOGS_PATH, index=False)
 
     print(f"[✓] Processed {len(df)} logs")
-    print(f"[✓] Saved to {PROCESSED_LOGS_PATH}")
-    print(f"\n── Quick Stats ───────────────────────────")
-    print(f"    Total events : {len(df)}")
-    print(f"    Failed logins: {len(df[df['status'] == 'FAILED'])}")
-    print(f"    Success logins: {len(df[df['status'] == 'SUCCESS'])}")
-    print(f"    Off-hours events: {len(df[df['off_hours'] == True])}")
-    print(f"──────────────────────────────────────────")
 
-if __name__ == "__main__":
-    preprocess()
+    return df
