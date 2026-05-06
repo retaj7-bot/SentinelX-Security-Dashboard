@@ -1,17 +1,18 @@
 threat_type,severity,detail,ip
-BRUTE FORCE,CRITICAL,49 failed logins from 185.23.45.2 (Russia),185.23.45.2
-BRUTE FORCE,HIGH,5 failed logins from 192.168.1.10 (Egypt),192.168.1.10
-BRUTE FORCE,CRITICAL,38 failed logins from 194.165.16.11 (Belarus),194.165.16.11
-BRUTE FORCE,CRITICAL,49 failed logins from 198.51.100.5 (Iran),198.51.100.5
-BRUTE FORCE,CRITICAL,54 failed logins from 203.0.113.77 (North Korea),203.0.113.77
-BRUTE FORCE,HIGH,9 failed logins from 45.33.32.156 (USA),45.33.32.156
-BRUTE FORCE,CRITICAL,39 failed logins from 91.108.4.200 (China),91.108.4.200
-GEO ANOMALY,HIGH,49 failed attempts from high-risk country: Russia,185.23.45.2
-GEO ANOMALY,HIGH,38 failed attempts from high-risk country: Belarus,194.165.16.11
-GEO ANOMALY,HIGH,49 failed attempts from high-risk country: Iran,198.51.100.5
-GEO ANOMALY,HIGH,54 failed attempts from high-risk country: North Korea,203.0.113.77
-GEO ANOMALY,HIGH,39 failed attempts from high-risk country: China,91.108.4.200
-OFF-HOURS ACCESS,MEDIUM,162 login attempts outside work hours (7:00–22:00),N/A
+BRUTE FORCE,HIGH,6 failed logins from 172.16.0.8 (Egypt),172.16.0.8
+BRUTE FORCE,CRITICAL,34 failed logins from 185.23.45.2 (Russia),185.23.45.2
+BRUTE FORCE,HIGH,6 failed logins from 192.168.1.10 (Egypt),192.168.1.10
+BRUTE FORCE,CRITICAL,48 failed logins from 194.165.16.11 (Belarus),194.165.16.11
+BRUTE FORCE,CRITICAL,47 failed logins from 198.51.100.5 (Iran),198.51.100.5
+BRUTE FORCE,CRITICAL,41 failed logins from 203.0.113.77 (North Korea),203.0.113.77
+BRUTE FORCE,CRITICAL,11 failed logins from 45.33.32.156 (USA),45.33.32.156
+BRUTE FORCE,CRITICAL,41 failed logins from 91.108.4.200 (China),91.108.4.200
+GEO ANOMALY,HIGH,34 failed attempts from high-risk country: Russia,185.23.45.2
+GEO ANOMALY,HIGH,48 failed attempts from high-risk country: Belarus,194.165.16.11
+GEO ANOMALY,HIGH,47 failed attempts from high-risk country: Iran,198.51.100.5
+GEO ANOMALY,HIGH,41 failed attempts from high-risk country: North Korea,203.0.113.77
+GEO ANOMALY,HIGH,41 failed attempts from high-risk country: China,91.108.4.200
+OFF-HOURS ACCESS,MEDIUM,161 login attempts outside work hours (7:00–22:00),N/A
 CREDENTIAL STUFFING,HIGH,"User ""admin"" accessed from 9 different IPs",N/A
 CREDENTIAL STUFFING,HIGH,"User ""backup_user"" accessed from 9 different IPs",N/A
 CREDENTIAL STUFFING,HIGH,"User ""guest"" accessed from 9 different IPs",N/A
@@ -19,4 +20,4 @@ CREDENTIAL STUFFING,HIGH,"User ""jane.smith"" accessed from 9 different IPs",N/A
 CREDENTIAL STUFFING,HIGH,"User ""john.doe"" accessed from 9 different IPs",N/A
 CREDENTIAL STUFFING,HIGH,"User ""root"" accessed from 9 different IPs",N/A
 CREDENTIAL STUFFING,HIGH,"User ""service_acc"" accessed from 9 different IPs",N/A
-PRIVILEGED ACCOUNT ATTACK,CRITICAL,100 failed attempts on privileged accounts,N/A
+PRIVILEGED ACCOUNT ATTACK,CRITICAL,99 failed attempts on privileged accounts,N/A

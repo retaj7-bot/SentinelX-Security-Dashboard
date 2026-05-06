@@ -43,45 +43,37 @@ SentinelX is a cybersecurity data analytics project that:
 
 ## 📂 Project Structure
 
-## 📂 Project Structure
-
-## 📂 Project Structure
-
-```text
-SentinelX-Security-Dashboard/
-│
-├── data/
-│   ├── raw_logs.csv
-│   ├── processed_logs.csv
-│   └── threats.csv
-│
-├── database/
-│   ├── schema.sql
-│   └── queries.sql
-│
-├── images/
-│   └── sentinelx_dashboard.png
-│
-├── reports/
-│   └── threat_report.md
-│
-├── scripts/
-│   ├── config.py
-│   ├── generate_logs.py
-│   ├── preprocess.py
-│   ├── detect_threats.py
-│   └── load_database.py
-│
-├── templates/
-│   └── dashboard.html
-│
-├── app.py
-├── pipeline.py
-├── README.md
-└── requirements.txt
-```
-
----
+    SentinelX-Security-Dashboard/
+    │
+    ├── data/
+    │   ├── raw_logs.csv
+    │   ├── processed_logs.csv
+    │   └── threats.csv
+    │
+    ├── database/
+    │   ├── schema.sql
+    │   └── queries.sql
+    │
+    ├── images/
+    │   └── sentinelx_dashboard.png
+    │
+    ├── reports/
+    │   └── threat_report.md
+    │
+    ├── scripts/
+    │   ├── config.py
+    │   ├── generate_logs.py
+    │   ├── preprocess.py
+    │   ├── detect_threats.py
+    │   └── load_database.py
+    │
+    ├── templates/
+    │   └── dashboard.html
+    │
+    ├── app.py
+    ├── pipeline.py
+    ├── README.md
+    └── requirements.txt
 
 ---
 
@@ -89,24 +81,24 @@ SentinelX-Security-Dashboard/
 
 **1. Clone the repository**
 
-git clone https://github.com/retaj7-bot/SentinelX-Security-Dashboard.git
-cd SentinelX-Security-Dashboard
+    git clone https://github.com/retaj7-bot/SentinelX-Security-Dashboard.git
+    cd SentinelX-Security-Dashboard
 
 **2. Install dependencies**
 
-pip install -r requirements.txt
+    pip install -r requirements.txt
 
 **3. Run everything in one command**
 
-py pipeline.py
+    py pipeline.py
 
 **4. Launch the live dashboard**
 
-py app.py
+    py app.py
 
 **5. Open your browser and go to**
 
-http://127.0.0.1:5000
+    http://127.0.0.1:5000
 
 ---
 
@@ -142,4 +134,4 @@ Combines: Cybersecurity · Data Analytics · Python · SQL · Flask
 
 ---
 
-This project simulates a real SOC environment for educational and portfolio purposes.
+*This project simulates a real SOC environment for educational and portfolio purposes.*
