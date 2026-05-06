@@ -129,7 +129,7 @@ http://127.0.0.1:5000
 
 ## 👤 Author
 
-Built by retaj7-bot as a cybersecurity portfolio project.
+Built by Retaj Rabie as a cybersecurity portfolio project.
 Combines: Cybersecurity · Data Analytics · Python · SQL · Flask
 
 ---
