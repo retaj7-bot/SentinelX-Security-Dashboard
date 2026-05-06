@@ -43,6 +43,9 @@ SentinelX is a cybersecurity data analytics project that:
 
 ## 📂 Project Structure
 
+## 📂 Project Structure
+
+```
 SentinelX-Security-Dashboard/
 │
 ├── data/
@@ -74,6 +77,7 @@ SentinelX-Security-Dashboard/
 ├── pipeline.py
 ├── README.md
 └── requirements.txt
+```
 
 ---
 
