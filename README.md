@@ -43,37 +43,37 @@ SentinelX is a cybersecurity data analytics project that:
 
 ## 📂 Project Structure
 
-    SentinelX-Security-Dashboard/
-    │
-    ├── data/
-    │   ├── raw_logs.csv
-    │   ├── processed_logs.csv
-    │   └── threats.csv
-    │
-    ├── database/
-    │   ├── schema.sql
-    │   └── queries.sql
-    │
-    ├── images/
-    │   └── sentinelx_dashboard.png
-    │
-    ├── reports/
-    │   └── threat_report.md
-    │
-    ├── scripts/
-    │   ├── config.py
-    │   ├── generate_logs.py
-    │   ├── preprocess.py
-    │   ├── detect_threats.py
+   SentinelX-Security-Dashboard/
+│
+├── data/
+│   ├── raw_logs.csv
+│   ├── processed_logs.csv
+│   └── threats.csv
+│
+├── database/
+│   ├── schema.sql
+│   └── queries.sql
+│
+├── images/
+│   └── sentinelx_dashboard.png
+│
+├── reports/
+│   └── threat_report.md
+│
+├── scripts/
+│   ├── config.py
+│   ├── generate_logs.py
+│   ├── preprocess.py
+│   ├── detect_threats.py
 │   └── store_logs.py
-    │
-    ├── templates/
-    │   └── dashboard.html
-    │
-    ├── app.py
-    ├── pipeline.py
-    ├── README.md
-    └── requirements.txt
+│
+├── templates/
+│   └── dashboard.html
+│
+├── app.py
+├── pipeline.py
+├── README.md
+└── requirements.txt
 
 ---
 
